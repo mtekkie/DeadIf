@@ -10,13 +10,16 @@ The code is either HTTP/200 OK (no rules triggered) or HTTP/503 Service Unavaila
 
 A good example of when to use this application would be together with Kubernetes liveness probes to verify that the application is working inside an container.
 
+The kubernetes probes will check the running application servers MBeans (Management Beans) and evaluate if the application is up and running or has died and the application server needs to re-spawn. Note that deadif will never shut down
+the application server, it will report the status based on the rules. 
+
 An example of  an rule is :
 
 ```
 mbean WebSphere:type=ThreadPoolStats,name=Default Executor attribute ActiveThreads is > 100
 ```
 
-The probes will check the running application servers MBeans (Management Beans) and evaluate if the application is up and running or has died and the application server needs to re-spawn.
+
 
 The syntax for the rules are:
 
@@ -58,7 +61,7 @@ Examples:
   deadif3 = "mbean name=myTest operation getQueueDepth > 100"
   ```
 
-An application has the possibility to expose it's own MXBeans and have the rules tested against them. 
+An application has the possibility to expose it's own MXBeans and have the rules tested against them.
 
 All application servers have different setups when it comes to the MBeans that they are exposing. Use Jconsole to explore which MBeans that your application server is exposing.
 
