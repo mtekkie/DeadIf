@@ -18,7 +18,7 @@ mbean WebSphere:type=ThreadPoolStats,name=Default Executor attribute ActiveThrea
 ```
 
 
-##Sytax
+###Syntax
 
 The syntax for the rules are:
 
@@ -35,7 +35,7 @@ mbean <object name> operation  <name> {<,>,=,!=}  <value>
 ```
 Note that there is no support for passing arguments to the operation at this time.
 
-##Examples
+###Examples
 
 - "The application is dead if the application server has been running for more than 1000 seconds":
 
@@ -61,7 +61,7 @@ Note that there is no support for passing arguments to the operation at this tim
   deadif3 = "mbean name=myTest operation getQueueDepth > 100"
   ```
 
-##Building deadif.war
+###Building deadif.war
 Check out the code and run the maven target package.
 
 ```
@@ -70,9 +70,9 @@ cd DeadIf
 mvn package
 
 ```
-The resulting artifact (deadif.war) will be placed in target/. 
+The resulting artifact (deadif.war) will be placed in target/.
 
-##Custom MXBeans
+###Custom MXBeans
 An application has the possibility to expose it's own MXBeans and have the rules tested against them.
 
 See example: xxxx.
@@ -80,7 +80,7 @@ See example: xxxx.
 More information about MXBeans are available on Oracles site: https://docs.oracle.com/javase/tutorial/jmx/mbeans/mxbeans.html    
 
 
-##Application Server Info
+###Application Server Info
 All application servers have different setups when it comes to the MBeans that they are exposing. Use Jconsole to explore which MBeans that your application server is exposing.
 
 In Websphere Liberty profile there is an option to enable monitoring in the server.xml file. If that is enabled the PMI objects are available as MBeans and you can apply rules to them.  
@@ -98,7 +98,3 @@ In Websphere Liberty profile there is an option to enable monitoring in the serv
   <!-- ... other stuff ....  -->  
 </server>
 ```
-
-##More information
-
-More information about MXBeans are available on Oracles site: https://docs.oracle.com/javase/tutorial/jmx/mbeans/mxbeans.html    
