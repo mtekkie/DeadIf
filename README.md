@@ -11,13 +11,50 @@ The code is either HTTP/200 OK (no rules triggered) or HTTP/503 Service Unavaila
 A good example of when to use this application would be together with Kubernetes liveness probes to verify that the application is working inside an container.
 The kubernetes probes would check /DeadIf/healthz and based on the HTTP status code determine if the application server needs to re-spawn.
 
-An example of  an rule is :
+An example of an rule is :
 
 ```
 mbean WebSphere:type=ThreadPoolStats,name=Default Executor attribute ActiveThreads is > 100
 ```
 
+An example of resoponses:
+```json
+Rule(-s) triggered: HTTP/503 
+{
+  "ruleResult": [
+    {
+      "message": "Rule check: 1429274 > 50000",
+      "id": "deadif4",
+      "deadAccordingToRule": true
+    },
+    {
+      "message": "Rule check: 1429275 > 70000",
+      "id": "deadif1",
+      "deadAccordingToRule": true
+    }
+  ],
+  "dead": true
+}
+----------------------------------
+Successful: HTTP/200
 
+{
+  "ruleResult": [
+    {
+      "message": "Rule check: 1429274 > 50000",
+      "id": "deadif4",
+      "deadAccordingToRule": true
+    },
+    {
+      "message": "Rule check: 1429275 > 70000",
+      "id": "deadif1",
+      "deadAccordingToRule": true
+    }
+  ],
+  "dead": false
+}
+
+```
 ###Syntax
 
 The syntax for the rules are:
