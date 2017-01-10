@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Response;
 
 @ApplicationPath("healthz")
 @Path("/")
@@ -20,15 +21,23 @@ public class DeadIfRest extends Application{
 	private Rules rules;
 
 	public DeadIfRest(){
+		LOGGER.log(Level.FINE, "loading rules");
 		rules = new Rules();
 		rules.load();
 	}
 
 	@GET
 	@Produces("application/json")
-	public Status getStatus(){
-		LOGGER.log(Level.INFO, "Getting Status");
-		return rules.getStatus();
+	public Response getStatus(){
+		LOGGER.log(Level.FINE, "getting status");
+		
+		Status status = rules.getStatus();
+		
+		if (status.isDead()){
+			return Response.status(Response.Status.SERVICE_UNAVAILABLE).entity(status).build();
+		}
+		
+		return Response.ok(status).build();
 	}
 
 
