@@ -9,9 +9,7 @@ The DeadIf application will load rules that are defined as Operating System vari
 The code is either HTTP/200 OK (no rules triggered) or HTTP/503 Service Unavailable (one or more rules triggered).
 
 A good example of when to use this application would be together with Kubernetes liveness probes to verify that the application is working inside an container.
-
-The kubernetes probes will check the running application servers MBeans (Management Beans) and evaluate if the application is up and running or has died and the application server needs to re-spawn. Note that deadif will never shut down
-the application server, it will report the status based on the rules. 
+The kubernetes probes would check /DeadIf/healthz and based on the HTTP status code determine if the application server needs to re-spawn.
 
 An example of  an rule is :
 
