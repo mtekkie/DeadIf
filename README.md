@@ -19,7 +19,7 @@ mbean WebSphere:type=ThreadPoolStats,name=Default Executor attribute ActiveThrea
 
 An example of resoponses:
 ```json
-Rule(-s) triggered: HTTP/503 
+Rule(-s) triggered: HTTP/503
 {
   "ruleResult": [
     {
@@ -41,14 +41,9 @@ Successful: HTTP/200
 {
   "ruleResult": [
     {
-      "message": "Rule check: 1429274 > 50000",
+      "message": "Rule check: 10002 > 50000",
       "id": "deadif4",
-      "deadAccordingToRule": true
-    },
-    {
-      "message": "Rule check: 1429275 > 70000",
-      "id": "deadif1",
-      "deadAccordingToRule": true
+      "deadAccordingToRule": false
     }
   ],
   "dead": false
