@@ -63,8 +63,10 @@ public class MbeanRule implements RuleInterface{
 				objectName = objectName+" "+ruleArguments[i];
 			}
 			
+			
+			
 			// mbean|WebSphere:type=Jvm Stats|attribute|UpTime|>|10000
-			setObjectName(objectName);
+			setObjectName(objectName.trim());
 			setAttributeOrOperation(ruleArguments[pos].toLowerCase());
 			setLeftName(ruleArguments[pos+1]);
 			setComperator(ruleArguments[pos+2]);
@@ -157,7 +159,8 @@ public class MbeanRule implements RuleInterface{
 
 		} catch (MalformedObjectNameException | AttributeNotFoundException | InstanceNotFoundException | MBeanException | ReflectionException | RuleCheckException  e) {
 			 RuleCheckException rce = new RuleCheckException();
-			 rce.setMessage(e.getMessage()+"-"+e.getCause());
+			 rce.setMessage(e.getClass().getName()+":"+e.getMessage());
+			// e.printStackTrace();
 			 throw rce;
 		}
 
