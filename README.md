@@ -13,7 +13,7 @@ A good example of when to use this application would be together with Kubernetes
 An example of  an rule is :
 
 ```
-dead if mbean WebSphere:type=ThreadPoolStats,name=Default Executor attribute ActiveThreads is > 100
+mbean WebSphere:type=ThreadPoolStats,name=Default Executor attribute ActiveThreads is > 100
 ```
 
 The probes will check the running application servers MBeans (Management Beans) and evaluate if the application is up and running or has died and the application server needs to re-spawn.
@@ -23,13 +23,13 @@ The syntax for the rules are:
 To evaluate an attribute:
 
 ```
-mbean <object name> attribute  <name> {<,>,=,!=}  <value> [for <time> minutes]
+mbean <object name> attribute  <name> {<,>,=,!=}  <value>
 ```
 
 To evaluate the result of an operation:
 
 ```
-mbean <object name> operation  <name> {<,>,=,!=}  <value> [for <time> minutes]
+mbean <object name> operation  <name> {<,>,=,!=}  <value>
 ```
 Note that there is no support for passing arguments to the operation at this time.
 
@@ -58,7 +58,7 @@ Examples:
   deadif3 = "mbean name=myTest operation getQueueDepth > 100"
   ```
 
-An application has the possibility to expose it's own MXBeans and have the rules tested against them.
+An application has the possibility to expose it's own MXBeans and have the rules tested against them. 
 
 All application servers have different setups when it comes to the MBeans that they are exposing. Use Jconsole to explore which MBeans that your application server is exposing.
 
@@ -77,5 +77,6 @@ In Websphere Liberty profile there is an option to enable monitoring in the serv
   <!-- ... other stuff ....  -->  
 </server>
 ```
+
 
 More information about MXBeans are available on Oracles site: https://docs.oracle.com/javase/tutorial/jmx/mbeans/mxbeans.html    
