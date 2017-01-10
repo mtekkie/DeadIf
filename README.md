@@ -23,9 +23,9 @@ Rule(-s) triggered: HTTP/503
 {
   "ruleResult": [
     {
-      "message": "Rule check: 1429274 > 50000",
+      "message": "Rule check: 10011 > 50000",
       "id": "deadif4",
-      "deadAccordingToRule": true
+      "deadAccordingToRule": false
     },
     {
       "message": "Rule check: 1429275 > 70000",
