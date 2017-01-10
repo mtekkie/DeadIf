@@ -5,7 +5,7 @@
   <artifactId>deadif</artifactId>
   <packaging>war</packaging>
   <version>1.0</version>
-  <name>deadif Maven Webapp</name>
+  <name>deadif Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
   	<dependency>
@@ -31,4 +31,7 @@
   <build>
     <finalName>deadif</finalName>
   </build>
+  <properties>
+  	<failOnMissingWebXml>false</failOnMissingWebXml>
+  </properties>
 </project>
