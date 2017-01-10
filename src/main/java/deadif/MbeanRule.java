@@ -38,14 +38,50 @@ public class MbeanRule implements RuleInterface{
 		if (ruleArguments.length < 6 )
 			throw new RuleParsingException("Number of arguments is less than 6, check syntax");
 
-		// mbean|WebSphere:type=JvmStats|attribute|UpTime|>|10000
-
-
-		setObjectName(ruleArguments[1]);
-		setAttributeOrOperation(ruleArguments[2].toLowerCase());
-		setLeftName(ruleArguments[3]);
-		setComperator(ruleArguments[4]);
-		setRightValue(ruleArguments[5]);
+		
+		//Sometimes there is a+ space in the ObjectName.
+		// Need to ensure that we have everything from after mbean to before operation/attribute
+		LOGGER.log(Level.FINE, "check that we have the whole ObjectName");
+		LOGGER.log(Level.FINE, "find position of operation/attribute in arguments");
+		
+		int pos=0;
+		for (int i=0; i < ruleArguments.length ; i++ ){
+			String s = ruleArguments[i];
+			if (s.equalsIgnoreCase("attribute") || s.equalsIgnoreCase("operation")){
+				LOGGER.log(Level.FINE, "found position at {0}", i);
+				pos=i;
+			}
+		}
+		
+		if (pos>2){
+			int numberOfSpaces = pos-2;
+			LOGGER.log(Level.FINE, "object name has spaces in it. number of spaces:{0}",numberOfSpaces);
+			
+			String objectName = "";
+			
+			for (int i = 1; i < pos; i++){
+				objectName = objectName+" "+ruleArguments[i];
+			}
+			
+			// mbean|WebSphere:type=Jvm Stats|attribute|UpTime|>|10000
+			setObjectName(objectName);
+			setAttributeOrOperation(ruleArguments[pos].toLowerCase());
+			setLeftName(ruleArguments[pos+1]);
+			setComperator(ruleArguments[pos+2]);
+			setRightValue(ruleArguments[pos+3]);
+			
+		}else{
+			// mbean|WebSphere:type=JvmStats|attribute|UpTime|>|10000
+			setObjectName(ruleArguments[1]);
+			setAttributeOrOperation(ruleArguments[2].toLowerCase());
+			setLeftName(ruleArguments[3]);
+			setComperator(ruleArguments[4]);
+			setRightValue(ruleArguments[5]);	
+			
+		}
+			
+		
+		
 
 
 
