@@ -247,14 +247,9 @@ public class MbeanRule implements RuleInterface{
 		this.leftName = leftName;
 	}
 
-
 	@Override
 	public String getId() {
 		return id;
 	}
-
-
-
-
 
 }
