@@ -41,7 +41,7 @@ Successful: HTTP/200
 {
   "ruleResult": [
     {
-      "message": "ule check on WebSphere:type=JvmStats UpTime: 10002 > 50000",
+      "message": "Rule check on WebSphere:type=JvmStats UpTime: 10002 > 50000",
       "id": "deadif4",
       "deadAccordingToRule": false
     }
