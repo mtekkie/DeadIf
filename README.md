@@ -115,6 +115,7 @@ The resulting artifact (deadif.war) will be placed in target/.
 ###Custom MXBeans
 An application has the possibility to expose it's own MXBeans and have the rules tested against them.
 
+An example of an really simple MXBean is available in this repo: https://github.com/mtekkie/MXBean-Example
 
 More information about MXBeans are available on Oracles site: https://docs.oracle.com/javase/tutorial/jmx/mbeans/mxbeans.html    
 
