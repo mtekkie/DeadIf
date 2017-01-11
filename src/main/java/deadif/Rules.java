@@ -61,8 +61,11 @@ public class Rules {
 				
 				StatusListItem sli = r.getStatus();
 				if (sli.isDeadAccordingToRule()){
+					
+					LOGGER.log(Level.WARNING, "deadif rule {0} has been triggered {1}", new Object []{ r.getId(), sli.getMessage()});
 					dead=true;
 				}
+				
 				slis.add(sli);
 				
 				LOGGER.log(Level.FINER, "done getting status on {0}", r.getId());

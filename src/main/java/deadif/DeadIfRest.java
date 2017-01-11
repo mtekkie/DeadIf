@@ -34,6 +34,7 @@ public class DeadIfRest extends Application{
 		Status status = rules.getStatus();
 		
 		if (status.isDead()){
+			LOGGER.log(Level.SEVERE, "deadif rule(-s) have been triggered. Application is deemed down. Reporting HTTP/503/ServiceUnavailable to probe.");
 			return Response.status(Response.Status.SERVICE_UNAVAILABLE).entity(status).build();
 		}
 		

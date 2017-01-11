@@ -23,16 +23,16 @@ Rule(-s) triggered: HTTP/503
 {
   "ruleResult": [
     {
-      "message": "Rule check: 10011 > 50000",
-      "id": "deadif4",
+      "message": "Rule check on WebSphere:type=ThreadPoolStats,name=Default Executor ActiveThreads: 1 > 100",
+      "id": "deadif7",
       "deadAccordingToRule": false
     },
     {
-      "message": "Rule check: 1429275 > 70000",
-      "id": "deadif1",
+      "message": "Rule check on WebSphere:type=JvmStats UpTime: 512403 > 50000",
+      "id": "deadif4",
       "deadAccordingToRule": true
     }
-  ],
+   ],
   "dead": true
 }
 ----------------------------------
@@ -41,7 +41,7 @@ Successful: HTTP/200
 {
   "ruleResult": [
     {
-      "message": "Rule check: 10002 > 50000",
+      "message": "ule check on WebSphere:type=JvmStats UpTime: 10002 > 50000",
       "id": "deadif4",
       "deadAccordingToRule": false
     }
@@ -50,6 +50,14 @@ Successful: HTTP/200
 }
 
 ```
+If an rule is triggered it will be reported in the SystemOut stream:
+```
+[WARNING ] deadif rule deadif4 has been triggered Rule check on WebSphere:type=JvmStats UpTime: 512403 > 50000
+[WARNING ] deadif rule deadif1 has been triggered Rule check on WebSphere:type=JvmStats UpTime: 512404 > 70000
+[ERROR   ] deadif rule(-s) have been triggered. Application is deemed down. Reporting HTTP/503/ServiceUnavailable to probe.
+```
+
+
 ###Syntax
 
 The syntax for the rules are:

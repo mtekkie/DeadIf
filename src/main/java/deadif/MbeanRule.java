@@ -81,13 +81,7 @@ public class MbeanRule implements RuleInterface{
 			setRightValue(ruleArguments[5]);	
 			
 		}
-			
 		
-		
-
-
-
-
 		LOGGER.log(Level.FINER, "checking if comperator is vaild, value: {0}", getComperator());
 		if (!( getComperator().equals("=") ||
 			   getComperator().equals("==") ||
@@ -173,7 +167,7 @@ public class MbeanRule implements RuleInterface{
 		StatusListItem sli = new StatusListItem();
 		sli.setId(getId());
 		sli.setDeadAccordingToRule(isDead());
-		sli.setMessage("Rule check: "+this.leftValueObj.toString()+" "+this.comperator+" "+this.rightValue);
+		sli.setMessage("Rule check on "+this.objectName+" "+ this.leftName+": "+this.leftValueObj.toString()+" "+this.comperator+" "+this.rightValue );
 		return sli;
 
 
